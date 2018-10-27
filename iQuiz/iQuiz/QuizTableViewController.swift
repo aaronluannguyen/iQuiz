@@ -40,6 +40,7 @@ class QuizTableViewController: UITableViewController {
     
     quizzes += [baseballQuiz, transformersQuiz, batmanQuiz]
   }
+  
 
   override func numberOfSections(in tableView: UITableView) -> Int {
       return 1
@@ -51,7 +52,7 @@ class QuizTableViewController: UITableViewController {
 
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      let cellIdentifier = "QuizTableViewCell"
+    let cellIdentifier = "QuizTableViewCell"
     guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? QuizTableViewCell else {
       fatalError("Dequeued cell is not an instance of QuizTableViewCell")
     }
