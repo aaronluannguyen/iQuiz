@@ -10,14 +10,13 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
+  var quizzes = AppData.shared.quizzes
+  
   @IBOutlet weak var table: UITableView!
-  var quizzes = [Quiz]()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
-    loadQuizzes()
-//    self.table.register(QuizTableViewCell.self, forCellReuseIdentifier: "cell")
     table.delegate = self
     table.dataSource = self
     table.tableFooterView = UIView()
@@ -33,27 +32,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
     self.present(alert, animated: true)
   }
-  
-  struct Quiz {
-    var title: String
-    var description: String
-    var image: UIImage
-  }
-  
-  private func loadQuizzes() {
-    let baseballQuizImage = UIImage(named: "baseball")
-    let transformersQuizImage = UIImage(named: "transformer")
-    let batmanQuizImage = UIImage(named: "batman")
-    
-    let baseballQuiz = Quiz(title: "Baseball Quiz", description: "A quiz about baseball as a sport and its participants!", image: baseballQuizImage!)
-    
-    let transformersQuiz = Quiz(title: "Transformers Quiz", description: "Questions about the world of Transformers!", image: transformersQuizImage!)
-    
-    let batmanQuiz = Quiz(title: "Batman Quiz", description: "Learn more about Batman through a fun and interesting quiz!", image: batmanQuizImage!)
-    
-    quizzes += [baseballQuiz, transformersQuiz, batmanQuiz]
-  }
 
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//    appdata.topicIdx = indexPath.row
+//    performSegue(withIdentifier: "segueGoToQuestion", sender: self)
+  }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return quizzes.count
