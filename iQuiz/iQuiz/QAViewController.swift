@@ -24,6 +24,7 @@ class QAViewController: UIViewController {
   
   @IBAction func quizzesBtn(_ sender: Any) {
     appdata.questionIndex = 0
+    appdata.userResponse = ""
     performSegue(withIdentifier: "QAToQuizzesSegue", sender: self)
   }
   
@@ -33,6 +34,10 @@ class QAViewController: UIViewController {
   @IBOutlet weak var a3: UIButton!
   @IBOutlet weak var a4: UIButton!
   @IBOutlet weak var submitBtn: UIButton!
+  
+  
+  weak var selectedBtn: UIButton!
+  var selectedAnswer: String = ""
   
   func loadQAView() {
     let topicIndex = appdata.topicIndex
@@ -56,23 +61,20 @@ class QAViewController: UIViewController {
   }
   
   
-  @IBAction func btnA1(_ sender: Any) {
-
+  @IBAction func btnActionHandler(_ sender: UIButton) {
+    if (selectedBtn == nil) {
+      submitBtn.isEnabled = true
+    } else {
+      selectedBtn.backgroundColor = UIColor.lightGray
+    }
+    selectedBtn = sender
+    sender.backgroundColor = UIColor.green
+    submitBtn.backgroundColor = UIColor.blue
+    appdata.userResponse = sender.titleLabel?.text as! String
   }
   
-  @IBAction func btnA2(_ sender: Any) {
-    
-  }
-  
-  @IBAction func btnA3(_ sender: Any) {
-    
-  }
-  
-  @IBAction func btnA4(_ sender: Any) {
-    
-  }
 
   @IBAction func btnSubmit(_ sender: Any) {
-    
+    performSegue(withIdentifier: "ToAnswerSegue", sender: self)
   }
 }

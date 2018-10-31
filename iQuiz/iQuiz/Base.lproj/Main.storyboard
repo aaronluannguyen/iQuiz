@@ -28,7 +28,7 @@
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uHW-6u-kG0">
-                                <rect key="frame" x="10" y="84" width="355" height="519"/>
+                                <rect key="frame" x="10" y="84" width="355" height="563"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="X8D-d2-r7x" customClass="QuizTableViewCell" customModule="iQuiz" customModuleProvider="target">
@@ -131,7 +131,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="btnA1:" destination="Rah-bs-Pfy" eventType="touchUpInside" id="dxf-ep-tmc"/>
+                                    <action selector="btnActionHandler:" destination="Rah-bs-Pfy" eventType="touchUpInside" id="3sP-3v-c2T"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcg-Mj-RzC">
@@ -147,7 +147,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="btnA2:" destination="Rah-bs-Pfy" eventType="touchUpInside" id="qGZ-c0-otO"/>
+                                    <action selector="btnActionHandler:" destination="Rah-bs-Pfy" eventType="touchUpInside" id="aDT-WP-yXw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hEL-no-7nc">
@@ -163,7 +163,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="btnA3:" destination="Rah-bs-Pfy" eventType="touchUpInside" id="pic-JH-bbD"/>
+                                    <action selector="btnActionHandler:" destination="Rah-bs-Pfy" eventType="touchUpInside" id="I3k-az-GKC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PGc-ur-pvV">
@@ -179,12 +179,12 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="btnA4:" destination="Rah-bs-Pfy" eventType="touchUpInside" id="MhN-1G-876"/>
+                                    <action selector="btnActionHandler:" destination="Rah-bs-Pfy" eventType="touchUpInside" id="8zO-wa-8mo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJu-5s-99H">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJu-5s-99H">
                                 <rect key="frame" x="15" y="564" width="345" height="39"/>
-                                <color key="backgroundColor" red="0.23614705969315408" green="0.36087785633002922" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Button">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -195,9 +195,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="btnA4:" destination="Rah-bs-Pfy" eventType="touchUpInside" id="fzQ-NJ-VZc"/>
-                                    <action selector="btnSubmit:" destination="Rah-bs-Pfy" eventType="touchUpInside" id="6wD-HE-f9T"/>
-                                    <segue destination="cYo-R8-kC2" kind="show" identifier="ToAnswerSegue" id="0j2-HZ-m8S"/>
+                                    <action selector="btnSubmit:" destination="Rah-bs-Pfy" eventType="touchUpInside" id="uWA-ZF-W47"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -235,8 +233,9 @@
                         <outlet property="a3" destination="hEL-no-7nc" id="dTb-gq-YXD"/>
                         <outlet property="a4" destination="PGc-ur-pvV" id="Tzn-AH-SdW"/>
                         <outlet property="questionText" destination="E3h-ey-15l" id="qOu-gO-wuU"/>
-                        <outlet property="submitBtn" destination="hJu-5s-99H" id="V0Q-F3-Ndl"/>
+                        <outlet property="submitBtn" destination="hJu-5s-99H" id="WBZ-i8-RCs"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="QAToQuizzesSegue" id="PpV-7o-KgB"/>
+                        <segue destination="cYo-R8-kC2" kind="show" identifier="ToAnswerSegue" id="FLy-8c-LSW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WJl-R5-Ahp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -264,19 +263,19 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVR-Da-fK0">
-                                <rect key="frame" x="15" y="74" width="345" height="43"/>
+                                <rect key="frame" x="15" y="84" width="345" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMN-Zb-CCm">
-                                <rect key="frame" x="15" y="137" width="345" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMN-Zb-CCm">
+                                <rect key="frame" x="15" y="506" width="345" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XCp-7y-0kS">
-                                <rect key="frame" x="30" y="210" width="315" height="209"/>
+                                <rect key="frame" x="30" y="191" width="315" height="285"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xd3-Aq-mgT">
                                 <rect key="frame" x="15" y="564" width="345" height="39"/>
@@ -296,24 +295,33 @@
                                     <action selector="proceedBtn:" destination="cYo-R8-kC2" eventType="touchUpInside" id="Fle-6K-WVC"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vUu-m3-e3u">
+                                <rect key="frame" x="15" y="147" width="345" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Xd3-Aq-mgT" firstAttribute="leading" secondItem="qPm-yV-oc3" secondAttribute="leading" constant="15" id="0IO-Pj-tmD"/>
                             <constraint firstItem="qPm-yV-oc3" firstAttribute="bottom" secondItem="Xd3-Aq-mgT" secondAttribute="bottom" constant="20" id="5wf-Du-TWP"/>
-                            <constraint firstItem="rMN-Zb-CCm" firstAttribute="top" secondItem="HVR-Da-fK0" secondAttribute="bottom" constant="20" id="CZB-DP-KSK"/>
                             <constraint firstItem="XCp-7y-0kS" firstAttribute="leading" secondItem="qPm-yV-oc3" secondAttribute="leading" constant="30" id="Egd-pv-C9L"/>
+                            <constraint firstItem="qPm-yV-oc3" firstAttribute="trailing" secondItem="vUu-m3-e3u" secondAttribute="trailing" constant="15" id="FBR-Gz-fpo"/>
                             <constraint firstItem="qPm-yV-oc3" firstAttribute="trailing" secondItem="rMN-Zb-CCm" secondAttribute="trailing" constant="15" id="Fk8-dX-IAO"/>
+                            <constraint firstItem="vUu-m3-e3u" firstAttribute="leading" secondItem="qPm-yV-oc3" secondAttribute="leading" constant="15" id="JOG-S7-X56"/>
                             <constraint firstItem="rMN-Zb-CCm" firstAttribute="leading" secondItem="qPm-yV-oc3" secondAttribute="leading" constant="15" id="Jbh-xM-3yw"/>
                             <constraint firstItem="9r1-Nf-9el" firstAttribute="top" secondItem="qPm-yV-oc3" secondAttribute="top" id="Mhs-90-h33"/>
                             <constraint firstItem="qPm-yV-oc3" firstAttribute="trailing" secondItem="HVR-Da-fK0" secondAttribute="trailing" constant="15" id="Tjx-gu-7hU"/>
-                            <constraint firstItem="XCp-7y-0kS" firstAttribute="top" secondItem="rMN-Zb-CCm" secondAttribute="bottom" constant="30" id="Us4-mA-9rD"/>
                             <constraint firstItem="HVR-Da-fK0" firstAttribute="leading" secondItem="qPm-yV-oc3" secondAttribute="leading" constant="15" id="cPt-uV-LIY"/>
+                            <constraint firstItem="rMN-Zb-CCm" firstAttribute="top" secondItem="XCp-7y-0kS" secondAttribute="bottom" constant="20" id="lsz-3A-H53"/>
                             <constraint firstItem="qPm-yV-oc3" firstAttribute="trailing" secondItem="Xd3-Aq-mgT" secondAttribute="trailing" constant="15" id="mYK-mv-iq0"/>
                             <constraint firstItem="qPm-yV-oc3" firstAttribute="trailing" secondItem="XCp-7y-0kS" secondAttribute="trailing" constant="30" id="md5-it-bKf"/>
                             <constraint firstItem="9r1-Nf-9el" firstAttribute="leading" secondItem="qPm-yV-oc3" secondAttribute="leading" id="mmb-Y7-LaF"/>
                             <constraint firstItem="9r1-Nf-9el" firstAttribute="trailing" secondItem="qPm-yV-oc3" secondAttribute="trailing" id="ozf-Cg-IPR"/>
-                            <constraint firstItem="HVR-Da-fK0" firstAttribute="top" secondItem="9r1-Nf-9el" secondAttribute="bottom" constant="10" id="piW-Na-UpD"/>
+                            <constraint firstItem="HVR-Da-fK0" firstAttribute="top" secondItem="9r1-Nf-9el" secondAttribute="bottom" constant="20" id="piW-Na-UpD"/>
+                            <constraint firstItem="XCp-7y-0kS" firstAttribute="top" secondItem="vUu-m3-e3u" secondAttribute="bottom" constant="20" id="ptW-ht-esf"/>
+                            <constraint firstItem="vUu-m3-e3u" firstAttribute="top" secondItem="HVR-Da-fK0" secondAttribute="bottom" constant="20" id="uqc-7H-AGI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qPm-yV-oc3"/>
                     </view>
@@ -322,6 +330,7 @@
                         <outlet property="proceedBtnOutlet" destination="Xd3-Aq-mgT" id="K8v-hV-xA3"/>
                         <outlet property="question" destination="HVR-Da-fK0" id="XCI-kL-PeK"/>
                         <outlet property="statusImage" destination="XCp-7y-0kS" id="WWu-NS-dG6"/>
+                        <outlet property="userAnswer" destination="vUu-m3-e3u" id="pgE-cN-veN"/>
                         <segue destination="Rah-bs-Pfy" kind="show" identifier="BackToQuestionSegue" id="NGP-di-E5G"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="AToQuizzesSegue" id="D4V-um-NI5"/>
                     </connections>
@@ -332,7 +341,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="WXK-Hg-KTJ"/>
-        <segue reference="PpV-7o-KgB"/>
+        <segue reference="NGP-di-E5G"/>
+        <segue reference="D4V-um-NI5"/>
     </inferredMetricsTieBreakers>
 </document>

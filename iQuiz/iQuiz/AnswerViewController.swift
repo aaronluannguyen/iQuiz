@@ -20,24 +20,33 @@ class AnswerViewController: UIViewController {
   
   
   @IBOutlet weak var question: UILabel!
+  @IBOutlet weak var userAnswer: UILabel!
   @IBOutlet weak var correctAnswer: UILabel!
   @IBOutlet weak var statusImage: UIImageView!
   @IBOutlet weak var proceedBtnOutlet: UIButton!
   
   
   func loadAnswerView() {
+    userAnswer.text = "Your answer: " + appdata.userResponse
     let topicIndex = appdata.topicIndex
+    var correctAnswerValue = ""
     switch appdata.questionIndex {
       case 0:
         question.text = appdata.quizzes[topicIndex].question1
-        correctAnswer.text = appdata.quizzes[topicIndex].question1CorrectAnswer
+        correctAnswerValue = appdata.quizzes[topicIndex].question1CorrectAnswer
+        correctAnswer.text = "The correct answer is " + correctAnswerValue
         proceedBtnOutlet.setTitle("Next", for: [])
       default:
         question.text = appdata.quizzes[topicIndex].question2
-        correctAnswer.text = appdata.quizzes[topicIndex].question2CorrectAnswer
+        correctAnswerValue = appdata.quizzes[topicIndex].question2CorrectAnswer
+        correctAnswer.text = "The correct answer is " + correctAnswerValue
         proceedBtnOutlet.setTitle("Finish", for: [])
     }
-    //Handle image here
+    if (appdata.userResponse == correctAnswerValue) {
+      statusImage.image = UIImage(named: "correct")!
+    } else {
+      statusImage.image = UIImage(named: "wrong")!
+    }
   }
   
   @IBAction func quizzesBtn(_ sender: Any) {

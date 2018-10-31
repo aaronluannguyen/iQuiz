@@ -87,7 +87,6 @@
 		F4E184092182D15900EF239D = {
 			isa = PBXGroup;
 			children = (
-				F4BBF180218834FF00B2082C /* AnswerViewController.swift */,
 				F4E184142182D15900EF239D /* iQuiz */,
 				F4E184292182D15A00EF239D /* iQuizTests */,
 				F4E184342182D15A00EF239D /* iQuizUITests */,
@@ -108,6 +107,7 @@
 		F4E184142182D15900EF239D /* iQuiz */ = {
 			isa = PBXGroup;
 			children = (
+				F4BBF180218834FF00B2082C /* AnswerViewController.swift */,
 				F4E184152182D15900EF239D /* AppDelegate.swift */,
 				F4E184172182D15900EF239D /* ViewController.swift */,
 				F4E184192182D15900EF239D /* Main.storyboard */,
