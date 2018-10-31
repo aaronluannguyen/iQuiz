@@ -10,6 +10,7 @@
 		F4BBF17F21882C5600B2082C /* QAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBF17E21882C5600B2082C /* QAViewController.swift */; };
 		F4BBF181218834FF00B2082C /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBF180218834FF00B2082C /* AnswerViewController.swift */; };
 		F4BBF1832188494F00B2082C /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBF1822188494F00B2082C /* AppData.swift */; };
+		F4DB10942189507F00D2EF06 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DB10932189507F00D2EF06 /* ScoreViewController.swift */; };
 		F4E184162182D15900EF239D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E184152182D15900EF239D /* AppDelegate.swift */; };
 		F4E184182182D15900EF239D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E184172182D15900EF239D /* ViewController.swift */; };
 		F4E1841B2182D15900EF239D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4E184192182D15900EF239D /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		F4BBF17E21882C5600B2082C /* QAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QAViewController.swift; sourceTree = "<group>"; };
 		F4BBF180218834FF00B2082C /* AnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
 		F4BBF1822188494F00B2082C /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		F4DB10932189507F00D2EF06 /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		F4E184122182D15900EF239D /* iQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E184152182D15900EF239D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F4E184172182D15900EF239D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				F4E184152182D15900EF239D /* AppDelegate.swift */,
 				F4E184172182D15900EF239D /* ViewController.swift */,
 				F4E184192182D15900EF239D /* Main.storyboard */,
+				F4DB10932189507F00D2EF06 /* ScoreViewController.swift */,
 				F4BBF1822188494F00B2082C /* AppData.swift */,
 				F4BBF17E21882C5600B2082C /* QAViewController.swift */,
 				F4E184432183E6F300EF239D /* QuizTableViewCell.swift */,
@@ -278,6 +281,7 @@
 				F4E184162182D15900EF239D /* AppDelegate.swift in Sources */,
 				F4E184442183E6F300EF239D /* QuizTableViewCell.swift in Sources */,
 				F4BBF1832188494F00B2082C /* AppData.swift in Sources */,
+				F4DB10942189507F00D2EF06 /* ScoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

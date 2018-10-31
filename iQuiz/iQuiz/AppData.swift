@@ -52,4 +52,5 @@ class AppData: NSObject {
   open var topicIndex = 0
   open var questionIndex = 0
   open var userResponse = ""
+  open var userScore = 0
 }

@@ -27,7 +27,7 @@ class AnswerViewController: UIViewController {
   
   
   func loadAnswerView() {
-    userAnswer.text = "Your answer: " + appdata.userResponse
+    userAnswer.text = "Your answer is " + appdata.userResponse
     let topicIndex = appdata.topicIndex
     var correctAnswerValue = ""
     switch appdata.questionIndex {
@@ -43,6 +43,7 @@ class AnswerViewController: UIViewController {
         proceedBtnOutlet.setTitle("Finish", for: [])
     }
     if (appdata.userResponse == correctAnswerValue) {
+      appdata.userScore += 1
       statusImage.image = UIImage(named: "correct")!
     } else {
       statusImage.image = UIImage(named: "wrong")!
@@ -61,7 +62,7 @@ class AnswerViewController: UIViewController {
         performSegue(withIdentifier: "BackToQuestionSegue", sender: self)
       default:
         appdata.questionIndex = 0
-        performSegue(withIdentifier: "AToQuizzesSegue", sender: self)
+        performSegue(withIdentifier: "ToFinishedSegue", sender: self)
     }
   }
 }
