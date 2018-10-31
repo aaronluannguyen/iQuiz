@@ -10,13 +10,38 @@ import UIKit
 
 class AnswerViewController: UIViewController {
   
-    var appdata = AppData.shared
+  var appdata = AppData.shared
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-        loadAnswerView()
+    loadAnswerView()
+    
+    let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+    swipeLeft.direction = .left
+    self.view.addGestureRecognizer(swipeLeft)
+    
+    let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+    swipeRight.direction = .right
+    self.view.addGestureRecognizer(swipeRight)
+  }
+  
+  @objc
+  func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+    if gesture.direction == UISwipeGestureRecognizer.Direction.right {
+      performSegue(withIdentifier: "AToQuizzesSegue", sender: self)
     }
+    else if gesture.direction == UISwipeGestureRecognizer.Direction.left {
+      switch appdata.questionIndex {
+      case 0:
+        appdata.questionIndex = 1
+        performSegue(withIdentifier: "BackToQuestionSegue", sender: self)
+      default:
+        appdata.questionIndex = 0
+        performSegue(withIdentifier: "ToFinishedSegue", sender: self)
+      }
+    }
+  }
   
   
   @IBOutlet weak var question: UILabel!

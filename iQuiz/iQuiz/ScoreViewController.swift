@@ -16,6 +16,24 @@ class ScoreViewController: UIViewController {
     super.viewDidLoad()
 
     renderScoreLabel()
+    
+    let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+    swipeLeft.direction = .left
+    self.view.addGestureRecognizer(swipeLeft)
+    
+    let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+    swipeRight.direction = .right
+    self.view.addGestureRecognizer(swipeRight)
+  }
+  
+  @objc
+  func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+    if gesture.direction == UISwipeGestureRecognizer.Direction.right {
+      performSegue(withIdentifier: "FinishToQuizzesSegue", sender: self)
+    }
+    else if gesture.direction == UISwipeGestureRecognizer.Direction.left {
+      performSegue(withIdentifier: "FinishToQuizzesSegue", sender: self)
+    }
   }
 
   @IBOutlet weak var scoreLabel: UILabel!

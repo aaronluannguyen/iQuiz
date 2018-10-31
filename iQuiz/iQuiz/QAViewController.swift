@@ -10,14 +10,33 @@ import UIKit
 
 class QAViewController: UIViewController {
   
-    var appdata = AppData.shared
+  var appdata = AppData.shared
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-        loadQAView()
-    }
+    loadQAView()
     
+    let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+    swipeLeft.direction = .left
+    self.view.addGestureRecognizer(swipeLeft)
+    
+    let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+    swipeRight.direction = .right
+    self.view.addGestureRecognizer(swipeRight)
+  }
+  
+  @objc
+  func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+    if gesture.direction == UISwipeGestureRecognizer.Direction.right {
+      performSegue(withIdentifier: "QAToQuizzesSegue", sender: self)
+    }
+    else if gesture.direction == UISwipeGestureRecognizer.Direction.left {
+      if (submitBtn.isEnabled) {
+        performSegue(withIdentifier: "ToAnswerSegue", sender: self)
+      }
+    }
+  }
 
   @IBOutlet weak var questionText: UILabel!
   
