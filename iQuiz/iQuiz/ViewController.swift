@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
+  var appdata = AppData.shared
   var quizzes = AppData.shared.quizzes
   
   @IBOutlet weak var table: UITableView!
@@ -34,8 +35,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    appdata.topicIdx = indexPath.row
-//    performSegue(withIdentifier: "segueGoToQuestion", sender: self)
+    appdata.topicIndex = indexPath.row
+    appdata.questionIndex = 0
+    performSegue(withIdentifier: "ToQuestionSegue", sender: self)
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

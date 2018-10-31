@@ -48,4 +48,8 @@ class AppData: NSObject {
                                    question2CorrectAnswer: "Dick Grayson"
                               )
   ]
+  
+  open var topicIndex = 0
+  open var questionIndex = 0
+  open var userResponse = ""
 }
