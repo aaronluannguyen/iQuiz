@@ -8,44 +8,43 @@
 
 import UIKit
 
+
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   var appdata = AppData.shared
-  var quizzes = AppData.shared.quizzes
-  
-  struct Quiz: Decodable {
-    var title: String
-    var desc: String
-    var questions: [Question]
-  }
-  
-  struct Question: Decodable {
-    var text: String
-    var answer: String
-    var answers: [String]
-  }
   
   @IBOutlet weak var table: UITableView!
 
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
     table.delegate = self
     table.dataSource = self
     table.tableFooterView = UIView()
-    
+    getJsonQuizzes()
+  }
+  
+  func getJsonQuizzes() {
     guard let url = URL(string: appdata.jsonURL) else {return}
-    print(url)
-
+    
     URLSession.shared.dataTask(with: url) { (data, response, err) in
+      if (err != nil) {
+        let alert = UIAlertController(title: "Download Fail", message: "There was an error downloading the quizzes!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: {action in self.getJsonQuizzes()}))
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        self.present(alert, animated: true)
+      }
+      
       guard let data = data else {return}
       
       do {
-        let jsonQuizzes = try JSONDecoder().decode([Quiz].self, from: data)
-        print(jsonQuizzes)
+        AppData.shared.quizzes = try JSONDecoder().decode([AppData.Quiz].self, from: data)
+        DispatchQueue.main.async {
+          self.table.reloadData()
+        }
       } catch let jsonErr {
         print("Error serializing json: ", jsonErr)
       }
-    }.resume()
+      }.resume()
   }
 
   override func didReceiveMemoryWarning() {
@@ -66,18 +65,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return quizzes.count
+    return AppData.shared.quizzes.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cellIdentifier = "cell"
     let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! QuizTableViewCell
 
-    let quiz = quizzes[indexPath.row]
-
+    let quiz = AppData.shared.quizzes[indexPath.row]
+    
     cell.quizTitle?.text = quiz.title
-    cell.quizDescription?.text = quiz.description
-    cell.quizImage?.image = quiz.image
+    cell.quizDescription?.text = quiz.desc
 
     return cell
   }

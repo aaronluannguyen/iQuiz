@@ -29,16 +29,18 @@ class AnswerViewController: UIViewController {
   @objc
   func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
     if gesture.direction == UISwipeGestureRecognizer.Direction.right {
+      appdata.userScore = 0
       performSegue(withIdentifier: "AToQuizzesSegue", sender: self)
     }
     else if gesture.direction == UISwipeGestureRecognizer.Direction.left {
-      switch appdata.questionIndex {
-      case 0:
-        appdata.questionIndex = 1
-        performSegue(withIdentifier: "BackToQuestionSegue", sender: self)
-      default:
+      let topicIndex = appdata.topicIndex
+      let quiz = appdata.quizzes[topicIndex]
+      if (appdata.questionIndex >= quiz.questions.count - 1) {
         appdata.questionIndex = 0
         performSegue(withIdentifier: "ToFinishedSegue", sender: self)
+      } else {
+        appdata.questionIndex += 1
+        performSegue(withIdentifier: "BackToQuestionSegue", sender: self)
       }
     }
   }
@@ -54,24 +56,32 @@ class AnswerViewController: UIViewController {
   func loadAnswerView() {
     userAnswer.text = "Your answer is " + appdata.userResponse
     let topicIndex = appdata.topicIndex
-    var correctAnswerValue = ""
-    switch appdata.questionIndex {
-      case 0:
-        question.text = appdata.quizzes[topicIndex].question1
-        correctAnswerValue = appdata.quizzes[topicIndex].question1CorrectAnswer
-        correctAnswer.text = "The correct answer is " + correctAnswerValue
-        proceedBtnOutlet.setTitle("Next", for: [])
-      default:
-        question.text = appdata.quizzes[topicIndex].question2
-        correctAnswerValue = appdata.quizzes[topicIndex].question2CorrectAnswer
-        correctAnswer.text = "The correct answer is " + correctAnswerValue
-        proceedBtnOutlet.setTitle("Finish", for: [])
-    }
+    let quiz = appdata.quizzes[topicIndex]
+    let questionSpecific = quiz.questions[appdata.questionIndex]
+    let correctAnswerValue = getCorrectAnswer(questionSpecific.answer, questionSpecific)
+    question.text = questionSpecific.text
+    correctAnswer.text = "The correct answer is " + correctAnswerValue
+    proceedBtnOutlet.setTitle("Next", for: [])
     if (appdata.userResponse == correctAnswerValue) {
       appdata.userScore += 1
       statusImage.image = UIImage(named: "correct")!
     } else {
       statusImage.image = UIImage(named: "wrong")!
+    }
+  }
+  
+  func getCorrectAnswer(_ index: String, _ question: AppData.Question) -> String {
+    switch index {
+      case "1":
+        return question.answers[0]
+      case "2":
+        return question.answers[1]
+      case "3":
+        return question.answers[2]
+      case "4":
+        return question.answers[3]
+      default:
+        return ""
     }
   }
   
@@ -81,13 +91,14 @@ class AnswerViewController: UIViewController {
   }
   
   @IBAction func proceedBtn(_ sender: Any) {
-    switch appdata.questionIndex {
-      case 0:
-        appdata.questionIndex = 1
-        performSegue(withIdentifier: "BackToQuestionSegue", sender: self)
-      default:
-        appdata.questionIndex = 0
-        performSegue(withIdentifier: "ToFinishedSegue", sender: self)
+    let topicIndex = appdata.topicIndex
+    let quiz = appdata.quizzes[topicIndex]
+    if (appdata.questionIndex >= quiz.questions.count - 1) {
+      appdata.questionIndex = 0
+      performSegue(withIdentifier: "ToFinishedSegue", sender: self)
+    } else {
+      appdata.questionIndex += 1
+      performSegue(withIdentifier: "BackToQuestionSegue", sender: self)
     }
   }
 }

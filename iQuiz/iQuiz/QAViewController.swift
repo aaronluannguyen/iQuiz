@@ -29,6 +29,7 @@ class QAViewController: UIViewController {
   @objc
   func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
     if gesture.direction == UISwipeGestureRecognizer.Direction.right {
+      appdata.userScore = 0
       performSegue(withIdentifier: "QAToQuizzesSegue", sender: self)
     }
     else if gesture.direction == UISwipeGestureRecognizer.Direction.left {
@@ -61,21 +62,12 @@ class QAViewController: UIViewController {
   func loadQAView() {
     let topicIndex = appdata.topicIndex
     let quiz = appdata.quizzes[topicIndex]
-    switch appdata.questionIndex {
-      case 0:
-        questionText.text = quiz.question1
-        a1.setTitle(quiz.question1Answers[0], for: [])
-        a2.setTitle(quiz.question1Answers[1], for: [])
-        a3.setTitle(quiz.question1Answers[2], for: [])
-        a4.setTitle(quiz.question1Answers[3], for: [])
-
-      default:
-        questionText.text = quiz.question2
-        a1.setTitle(quiz.question2Answers[0], for: [])
-        a2.setTitle(quiz.question2Answers[1], for: [])
-        a3.setTitle(quiz.question2Answers[2], for: [])
-        a4.setTitle(quiz.question2Answers[3], for: [])
-    }
+    let question = quiz.questions[appdata.questionIndex]
+    questionText.text = question.text
+    a1.setTitle(question.answers[0], for: [])
+    a2.setTitle(question.answers[1], for: [])
+    a3.setTitle(question.answers[2], for: [])
+    a4.setTitle(question.answers[3], for: [])
     submitBtn.setTitle("Submit", for: [])
   }
   
