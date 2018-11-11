@@ -21,6 +21,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     table.dataSource = self
     table.tableFooterView = UIView()
     getJsonQuizzes()
+    if let data = UserDefaults.standard.value(forKey:"localQuizzes") as? Data {
+      AppData.shared.quizzes = try! PropertyListDecoder().decode(Array<AppData.Quiz>.self, from: data)
+    }
   }
   
   func getJsonQuizzes() {
@@ -34,17 +37,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.present(alert, animated: true)
       }
       
-      guard let data = data else {return}
+      guard let data: Data = data else {return}
       
       do {
         AppData.shared.quizzes = try JSONDecoder().decode([AppData.Quiz].self, from: data)
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(AppData.shared.quizzes), forKey:"localQuizzes")
         DispatchQueue.main.async {
           self.table.reloadData()
         }
       } catch let jsonErr {
         print("Error serializing json: ", jsonErr)
       }
-      }.resume()
+    }.resume()
   }
 
   override func didReceiveMemoryWarning() {

@@ -11,18 +11,17 @@ import UIKit
 class AppData: NSObject {
   static let shared = AppData()
   
-  public struct Quiz: Decodable {
+  public struct Quiz: Codable {
     var title: String
     var desc: String
     var questions: [Question]
   }
   
-  public struct Question: Decodable {
+  public struct Question: Codable {
     var text: String
     var answer: String
     var answers: [String]
   }
-
   
   open var quizzes = [Quiz]()
   open var jsonURL = "http://tednewardsandbox.site44.com/questions.json"
