@@ -20,35 +20,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     table.delegate = self
     table.dataSource = self
     table.tableFooterView = UIView()
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
     getJsonQuizzes()
-    if let data = UserDefaults.standard.value(forKey:"localQuizzes") as? Data {
-      AppData.shared.quizzes = try! PropertyListDecoder().decode(Array<AppData.Quiz>.self, from: data)
-    }
   }
   
   func getJsonQuizzes() {
-    guard let url = URL(string: appdata.jsonURL) else {return}
     
-    URLSession.shared.dataTask(with: url) { (data, response, err) in
-      if (err != nil) {
-        let alert = UIAlertController(title: "Download Fail", message: "There was an error downloading the quizzes!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: {action in self.getJsonQuizzes()}))
-        alert.addAction(UIAlertAction(title: "Local Quizzes", style: .default, handler: nil))
-        self.present(alert, animated: true)
-      }
+    if CheckInternet.Connection() {
+      guard let url = URL(string: appdata.jsonURL) else {return}
       
-      guard let data: Data = data else {return}
-      
-      do {
-        AppData.shared.quizzes = try JSONDecoder().decode([AppData.Quiz].self, from: data)
-        UserDefaults.standard.set(try? PropertyListEncoder().encode(AppData.shared.quizzes), forKey:"localQuizzes")
-        DispatchQueue.main.async {
-          self.table.reloadData()
+      URLSession.shared.dataTask(with: url) { (data, response, err) in
+        if (err != nil) {
+          let alert = UIAlertController(title: "Download Fail", message: "There was an error downloading the quizzes!", preferredStyle: .alert)
+          alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: {action in self.getJsonQuizzes()}))
+          alert.addAction(UIAlertAction(title: "Local Quizzes", style: .default, handler: nil))
+          self.present(alert, animated: true)
         }
-      } catch let jsonErr {
-        print("Error serializing json: ", jsonErr)
-      }
-    }.resume()
+        
+        guard let data: Data = data else {return}
+        
+        do {
+          AppData.shared.quizzes = try JSONDecoder().decode([AppData.Quiz].self, from: data)
+          UserDefaults.standard.set(try? PropertyListEncoder().encode(AppData.shared.quizzes), forKey:"localQuizzes")
+          DispatchQueue.main.async {
+            self.table.reloadData()
+          }
+        } catch let jsonErr {
+          print("Error serializing json: ", jsonErr)
+        }
+        }.resume()
+    } else {
+      let alert = UIAlertController(title: "No Internet Connection", message: "You have neither cellular data nor wifi connection at the moment. You will be using the last downloaded set of quizzes", preferredStyle: .alert)
+      alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: {action in self.getJsonQuizzes()}))
+      alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+      self.present(alert, animated: true)
+    }
+    
+    if let data = UserDefaults.standard.value(forKey:"localQuizzes") as? Data {
+      AppData.shared.quizzes = try! PropertyListDecoder().decode(Array<AppData.Quiz>.self, from: data)
+    }
   }
 
   override func didReceiveMemoryWarning() {
