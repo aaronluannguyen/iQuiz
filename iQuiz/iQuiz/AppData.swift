@@ -22,7 +22,7 @@ class AppData: NSObject {
     var question2Answers: [String]
     var question2CorrectAnswer: String
   }
-  
+
   open var quizzes: [Quiz] = [Quiz(title: "Baseball Quiz", description: "A quiz about baseball as a sport and its participants!", image: UIImage(named: "baseball")!,
                                    question1: "What is Seattle's baseball team called?",
                                    question1Answers: ["Dodgers", "Red Sox", "Mariners", "Marlins"],
@@ -48,7 +48,8 @@ class AppData: NSObject {
                                    question2CorrectAnswer: "Dick Grayson"
                               )
   ]
-  
+
+  open var jsonURL = "http://tednewardsandbox.site44.com/questions.json"
   open var topicIndex = 0
   open var questionIndex = 0
   open var userResponse = ""
