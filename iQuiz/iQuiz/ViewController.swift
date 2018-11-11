@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       if (err != nil) {
         let alert = UIAlertController(title: "Download Fail", message: "There was an error downloading the quizzes!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: {action in self.getJsonQuizzes()}))
-        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Local Quizzes", style: .default, handler: nil))
         self.present(alert, animated: true)
       }
       
