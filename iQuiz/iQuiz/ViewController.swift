@@ -25,11 +25,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   override func viewDidAppear(_ animated: Bool) {
     getJsonQuizzes()
   }
-  
+
   func getJsonQuizzes() {
     
     if CheckInternet.Connection() {
-      guard let url = URL(string: appdata.jsonURL) else {return}
+      let jsonURL: String = self.getJsonURL()
+      guard let url = URL(string: jsonURL) else {return}
       
       URLSession.shared.dataTask(with: url) { (data, response, err) in
         if (err != nil) {
@@ -67,10 +68,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
+  
+  func getJsonURL() -> String {
+    var jsonURL = UserDefaults.standard.object(forKey: "jsonURL") as? String
+    if jsonURL == nil {
+      UserDefaults.standard.set("http://tednewardsandbox.site44.com/questions.json", forKey: "jsonURL")
+      jsonURL = UserDefaults.standard.object(forKey: "jsonURL") as? String
+    }
+    return jsonURL!
+  }
 
   @IBAction func settingsBtn(_ sender: Any) {
-    let alert = UIAlertController(title: "Settings", message: "Check back for settings!", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    let jsonURL = self.getJsonURL()
+    let alert = UIAlertController(title: "Settings", message: "Enter a url for new quizzes!", preferredStyle: .alert)
+    alert.addTextField { (textField) in
+      textField.text = jsonURL
+    }
+    alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+    alert.addAction(UIAlertAction(title: "Check Now", style: .default, handler: {action in
+      let textField = alert.textFields![0]
+      UserDefaults.standard.set(textField.text, forKey: "jsonURL")
+      self.getJsonQuizzes()
+    }))
     self.present(alert, animated: true)
   }
 
