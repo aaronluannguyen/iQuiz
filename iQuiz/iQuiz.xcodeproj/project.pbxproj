@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F42BB65E2198E47800DC8F2A /* CheckInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42BB65D2198E47800DC8F2A /* CheckInternet.swift */; };
+		F42BB66021990C3600DC8F2A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F42BB65F21990C3600DC8F2A /* Settings.bundle */; };
 		F4BBF17F21882C5600B2082C /* QAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBF17E21882C5600B2082C /* QAViewController.swift */; };
 		F4BBF181218834FF00B2082C /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBF180218834FF00B2082C /* AnswerViewController.swift */; };
 		F4BBF1832188494F00B2082C /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BBF1822188494F00B2082C /* AppData.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		F42BB65D2198E47800DC8F2A /* CheckInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInternet.swift; sourceTree = "<group>"; };
+		F42BB65F21990C3600DC8F2A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		F4BBF17E21882C5600B2082C /* QAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QAViewController.swift; sourceTree = "<group>"; };
 		F4BBF180218834FF00B2082C /* AnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
 		F4BBF1822188494F00B2082C /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				F4BBF180218834FF00B2082C /* AnswerViewController.swift */,
 				F4E184152182D15900EF239D /* AppDelegate.swift */,
 				F4E184172182D15900EF239D /* ViewController.swift */,
+				F42BB65F21990C3600DC8F2A /* Settings.bundle */,
 				F4E184192182D15900EF239D /* Main.storyboard */,
 				F4DB10932189507F00D2EF06 /* ScoreViewController.swift */,
 				F4BBF1822188494F00B2082C /* AppData.swift */,
@@ -250,6 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F42BB66021990C3600DC8F2A /* Settings.bundle in Resources */,
 				F4E184202182D15A00EF239D /* LaunchScreen.storyboard in Resources */,
 				F4E1841D2182D15A00EF239D /* Assets.xcassets in Resources */,
 				F4E1841B2182D15900EF239D /* Main.storyboard in Resources */,

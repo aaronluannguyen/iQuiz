@@ -20,6 +20,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     table.delegate = self
     table.dataSource = self
     table.tableFooterView = UIView()
+    UserDefaults.standard.register(defaults: ([String : Any]()))
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -70,10 +71,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   }
   
   func getJsonURL() -> String {
-    var jsonURL = UserDefaults.standard.object(forKey: "jsonURL") as? String
+    var jsonURL = UserDefaults.standard.string(forKey: "jsonURL_pref")
     if jsonURL == nil {
-      UserDefaults.standard.set("http://tednewardsandbox.site44.com/questions.json", forKey: "jsonURL")
-      jsonURL = UserDefaults.standard.object(forKey: "jsonURL") as? String
+      UserDefaults.standard.setValue("http://tednewardsandbox.site44.com/questions.json", forKey: "jsonURL_pref")
+      jsonURL = UserDefaults.standard.string(forKey: "jsonURL")
     }
     return jsonURL!
   }
@@ -87,7 +88,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
     alert.addAction(UIAlertAction(title: "Check Now", style: .default, handler: {action in
       let textField = alert.textFields![0]
-      UserDefaults.standard.set(textField.text, forKey: "jsonURL")
+      UserDefaults.standard.set(textField.text, forKey: "jsonURL_pref")
       self.getJsonQuizzes()
     }))
     self.present(alert, animated: true)
